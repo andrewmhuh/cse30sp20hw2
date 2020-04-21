@@ -1,8 +1,8 @@
 /*
  * Homework #2
- * Date:    TODO
- * Author:  TODO
- * PID:     TODO
+ * Date:    4/22/20
+ * Author:  Andrew Huh
+ * PID:     A15939890
  * 
  * Program: Sigilyph Reverse Word (Mirror)
  *
@@ -53,8 +53,56 @@ rev_word_print(char *line_ptr, int cnt)
 {
 
     /*
-     * TODO
+     * 
      */
+	char  *startptr = line_ptr; // ptr to the start of the word
+	char *endptr = line_ptr; // ptr to the end of the word
+	int wordlen = 0;
 
+	int counter = 0; // counter to go through the line of input
+	while(counter <= cnt) {
+		
+		// case if the end of the word is reached
+		if(isspace(*endptr) || *endptr == '\0') {
+			/*
+			 * sets line_ptr to the last letter in the word
+			 */
+			line_ptr = endptr;
+
+			while(wordlen > 0) {
+				wordlen--;
+				*line_ptr--;
+				printf("%c", *line_ptr);
+			}
+
+			/*
+			 * prints a space or remaining character
+			 */
+			if(*endptr != '\0')
+			{
+				printf("%c", *endptr);
+			}
+	
+			/*
+			 * increments *endptr and sets startptr
+			 * to the beginning of the next word
+			 */
+			*endptr++;
+			startptr = endptr;
+		}
+		/*
+		 *  increments *endptr if the end of the word has
+		 *  not been reached
+		 */
+		else {
+			wordlen++;
+			*endptr++;
+		}
+		// increments counter
+		counter++;
+	}
+
+
+    // returns 0 if successful
     return(0);
 }
